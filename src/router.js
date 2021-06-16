@@ -9,7 +9,7 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: '/login'
+      redirect: '/home'
     },
     {
       path: '/login',
@@ -19,7 +19,25 @@ const router = new Router({
     {
       path: '/home',
       name: 'Home',
-      component: () => import('@/components/Home')
+      component: () => import('@/components/Home'),
+      children: [
+        {
+          path: '/dashboard',
+          component: () => import('@/components/Dashboard')
+        },
+        {
+          path: '/user/list',
+          component: () => import('@/components/user/UserList')
+        },
+        {
+          path: '/user/center',
+          component: () => import('@/components/user/UserCenter')
+        },
+        {
+          path: '/user/setting',
+          component: () => import('@/components/user/UserSetting')
+        }
+      ]
     }
   ]
 })
